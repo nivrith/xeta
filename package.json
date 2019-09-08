@@ -25,7 +25,7 @@
   "files": [
     "lib/**/*"
   ],
-  "types": "lib/**/*.d.ts",
+  "typings": "lib/index.d.ts",
   "main": "lib/index.js",
   "browser": {
     "lib/index.js": "lib/browser.js"
