@@ -36,7 +36,7 @@ export const create = (defaults: Partial<DefaultOptions>, adapterFactory: (optio
   }
 
   for (const method of aliases) {
-    xeta[ method ] = (url: string, options?: Options) => xeta(url, { ...options, method });
+    xeta[ method ] = (url: string, options?: Options) => xeta(url, { ...options, method, url });
   }
   xeta.create = create;
   return xeta;
