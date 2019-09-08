@@ -28,7 +28,8 @@
   "typings": "lib/index.d.ts",
   "main": "lib/index.js",
   "browser": {
-    "lib/index.js": "lib/browser.js"
+    "./lib/index.js": "./lib/browser.js",
+    "./lib/index.d.ts": "./lib/browser.d.ts"
   },
   "dependencies": {
     "url": "^0.11.0"
