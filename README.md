@@ -10,6 +10,8 @@ lightweight http client for web and node
 ## Highlights
 
 - Written in Typescript
+- Works in Browser and Node
+- Easy Promise based API
 
 ## Installation
 
@@ -33,8 +35,28 @@ $ yarn add xeta
 
   const { xeta } = require('xeta');
 
-  xeta(); // hello universe
+  xeta.get('https://jsonplaceholder.typicode.com/todos/1')
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .finally(function () {
+    // always executed
+  });
 
+  // async/await
+  async function getTodo() {
+    try {
+      const response = await xeta.get('https://jsonplaceholder.typicode.com/todos/1');
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 ```
 
 ## License
