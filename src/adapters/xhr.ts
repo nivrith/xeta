@@ -1,5 +1,6 @@
 import { HttpClientAdapter } from "./http-adapter.interface";
 import { HttpClientOptions } from "./adapter-options";
+import { Observable } from "rxjs";
 
 export const readyState = {
   UNSENT: 0, //Client has been created. open() not called yet.
@@ -17,18 +18,19 @@ export class XHRAdapter implements HttpClientAdapter {
 
   constructor(private options: HttpClientOptions ) {}
 
-  public send(): Promise<any> {
-    return new Promise((resolve, reject) => {
+  public send(): Observable<any> {
+    return new Observable((subscriber) => {
       // send request
       const xhr = new XMLHttpRequest();
 
       xhr.onerror = function(event) {
-        reject(new Error(`An error occured on sending the request with status: ${this.status}`));
+        subscriber.error(new Error(`An error occured on sending the request with status: ${this.status}`));
       };
 
       xhr.onreadystatechange = function(event) {
         if (this.readyState === readyState.DONE && this.status === httpStatus.SUCCESS) {
-          resolve(JSON.parse(xhr.responseText));
+          subscriber.next(JSON.parse(xhr.responseText));
+          subscriber.complete();
         }
       };
       xhr.open(this.options.method, String(this.options.url), true);

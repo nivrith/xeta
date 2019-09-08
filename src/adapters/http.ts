@@ -4,11 +4,12 @@ import { HttpClientOptions } from "./adapter-options";
 import url from 'url';
 import http from 'http';
 import https from 'https';
+import {Observable} from 'rxjs';
 
 const isHttps = /https:?/;
 export class HttpAdapter implements HttpClientAdapter  {
   constructor(private options: HttpClientOptions) {}
-  public send(): Promise<any> {
+  public send(): Observable<any> {
 
     var parsed = url.parse(String(this.options.url));
     var protocol = parsed.protocol || 'http:';
@@ -27,15 +28,16 @@ export class HttpAdapter implements HttpClientAdapter  {
       }
     }
     // console.log(options);
-    return new Promise((resolve, reject) => {
+    return new Observable((subscriber) => {
       const request = client.request(options, res => {
         let data = '';
         res.on('data', chunk => {data+= chunk});
         res.on('end', () => {
-          resolve(JSON.parse(data));
+          subscriber.next(JSON.parse(data));
+          subscriber.complete();
         });
       });
-      request.on('error', error => { reject(error) });
+      request.on('error', error => { subscriber.error(error) });
       request.end();
     })
   }

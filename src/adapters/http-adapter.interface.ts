@@ -1,5 +1,6 @@
 import {HttpClientOptions} from '../adapters/adapter-options';
+import { Observable } from 'rxjs';
 
 export interface HttpClientAdapter {
-  send(): Promise<any>
+  send(): Observable<any>
 }

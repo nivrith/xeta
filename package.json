@@ -36,6 +36,7 @@
     "./lib/index.d.ts": "./lib/browser.d.ts"
   },
   "dependencies": {
+    "rxjs": "^6.5.3",
     "url": "^0.11.0"
   },
   "engines": {

@@ -5,13 +5,13 @@
 [![node](https://img.shields.io/node/v/xeta.svg)](https://www.npmjs.com/package/xeta)
 [![License MIT](https://img.shields.io/github/license/nivrith/xeta.svg)](https://github.com/nivrith/xeta/blob/master/LICENSE)
 
-lightweight http client for web and node
+Observable based http client for web and node
 
 ## Highlights
 
 - Written in Typescript
 - Works in Browser and Node
-- Easy Promise based API
+- Easy Observable based API
 
 ## Installation
 
@@ -36,6 +36,24 @@ $ yarn add xeta
   const { xeta } = require('xeta');
 
   xeta.get('https://jsonplaceholder.typicode.com/todos/1')
+  .subscribe((response) => {
+    // handle success
+    console.log(response);
+  },
+  (error) => {
+    // handle error
+    console.error(error)
+  },
+  ()=>{
+    // handle completion
+    console.log('complete');
+  }
+  );
+
+  // Promise
+
+  xeta.get('https://jsonplaceholder.typicode.com/todos/1')
+  .toPromise()
   .then(function (response) {
     // handle success
     console.log(response);
@@ -48,10 +66,11 @@ $ yarn add xeta
     // always executed
   });
 
+
   // async/await
   async function getTodo() {
     try {
-      const response = await xeta.get('https://jsonplaceholder.typicode.com/todos/1');
+      const response = await xeta.get('https://jsonplaceholder.typicode.com/todos/1').toPromise();
       console.log(response);
     } catch (error) {
       console.error(error);
