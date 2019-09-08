@@ -1,0 +1,11 @@
+{
+  "extends": "@istanbuljs/nyc-config-typescript",
+  "all": true,
+  "lines": 80,
+  "exclude": [
+    "test",
+    "docs",
+    "dist"
+  ],
+  "check-coverage": true
+}
