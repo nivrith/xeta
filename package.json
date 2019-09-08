@@ -6,7 +6,11 @@
   "author": "Nivrith <nivrithgomatam@gmail.com>",
   "license": "MIT",
   "keywords": [
-    "xeta"
+    "xeta",
+    "xhr",
+    "http",
+    "node",
+    "promise"
   ],
   "scripts": {
     "serve": "npx webpack-dev-server --env.mode=development",
