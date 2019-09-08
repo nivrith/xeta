@@ -1,6 +1,6 @@
 {
   "name": "xeta",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "lightweight http client for web and node",
   "repository": "https://github.com/nivrith/xeta",
   "author": "Nivrith <nivrithgomatam@gmail.com>",
